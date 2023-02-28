@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--css-->
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="./css/admin.css" />
+    <!--script-->
+    <script src="../js/formsManagement.js"></script>
+    <script src="../js/functions.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="./js/admin.js"></script>
+    <title>Indovina la parola - admin</title>
+  </head>
+  <body>
+    <div id="header" class="centeredContent">
+      <img src="../images/arrow-left-solid.svg" id="backBtn" onclick="goToGamePage()" alt="indietro" />
+      <button id="logoutBtn" class="needLogin" onclick="logout(true)">
+        <span class="tooltip">
+          <img src="../images/right-from-bracket-solid.svg" class="iconLarge" alt="logout" />
+          <span class="tooltipText">Logout</span>
+        </span>
+      </button>
+      <h1 class="textCentered">
+        <button class="titleBtn correctChar">I</button>
+        <button class="titleBtn correctChar">N</button>
+        <button class="titleBtn correctChar">D</button>
+        <button class="titleBtn correctChar">O</button>
+        <button class="titleBtn correctChar">V</button>
+        <button class="titleBtn correctChar">I</button>
+        <button class="titleBtn correctChar">N</button>
+        <button class="titleBtn correctChar">A</button>
+        <button class="titleBtn wrongChar">L</button>
+        <button class="titleBtn wrongChar">A</button>
+        <button class="titleBtn wrongPlaceChar">P</button>
+        <button class="titleBtn wrongPlaceChar">A</button>
+        <button class="titleBtn wrongPlaceChar">R</button>
+        <button class="titleBtn wrongPlaceChar">O</button>
+        <button class="titleBtn wrongPlaceChar">L</button>
+        <button class="titleBtn wrongPlaceChar">A</button>
+      </h1>
+    </div>
+    <h3 class="textCentered m-0">PORTALE DI AMMINISTRAZIONE</h3>
+    <hr class="mb-20" />
+    <!--Messaggio popup-->
+    <div id="popupMessage"></div>
+    <!--Form di login-->
+    <div id="loginFormDiv">
+      <h3 class="textCentered">Login</h3>
+      <hr />
+      <form id="loginForm">
+        <label for="nameInputL"> Username </label>
+        <br />
+        <input type="text" name="nameInput" id="nameInputL" class="formInput" />
+        <br />
+        <label for="passInputL" class="mt-2"> Password </label>
+        <br />
+        <input type="password" name="passInput" id="passInputL" class="formInput" />
+        <label for="rememberMe"> Ricordami </label><input type="checkbox" name="rememberMe" id="rememberMe" checked />
+        <p id="loginError" class="invalid textCentered">Compilare tutti i campi per proseguire.</p>
+        <div class="centeredContent">
+          <input type="button" value="Login" class="submitBtn correctChar" onclick="submitLogin(true)" />
+        </div>
+        <hr />
+      </form>
+    </div>
+    <!--Porzione generata dinamicamente-->
+    <div id="generatedHTML" class="needLogin"></div>
+  </body>
+</html>

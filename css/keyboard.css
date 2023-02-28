@@ -1,0 +1,50 @@
+/*Classes*/
+.keyboardBtn {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: 1px solid black;
+  margin: 0 2px;
+}
+
+.keyboardBtn:active {
+  background-color: #949292;
+  transform: translateY(3px);
+}
+
+/*ids*/
+#keyboardContainer {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#keyboardContainer div {
+  display: flex;
+}
+
+#deleteBtn {
+  height: 50px;
+  width: 50px;
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+}
+
+#deleteBtn:active {
+  transform: translateY(3px);
+}
+
+#tryBtn {
+  background-color: transparent;
+  width: 80px;
+  height: 50px;
+  border: 1px solid black;
+  margin: 0 2px;
+}
+
+#tryBtn:active {
+  background-color: #949292;
+  transform: translateY(3px);
+}

@@ -1,0 +1,33 @@
+/*Classes*/
+.latestGamesWordCell {
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  color: white;
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+/*ids*/
+#latestGamesTable {
+  width: 100%;
+  margin: auto;
+  border-spacing: 10px;
+}
+
+#latestGamesDiv {
+  width: 80%;
+  border-radius: 8px;
+  padding-right: 10px;
+  padding-left: 10px;
+  position: absolute;
+  z-index: 999;
+  background-color: white;
+  left: 10%;
+  height: fit-content;
+  height: -moz-fit-content;
+  font-family: Helvetica, sans-serif;
+  margin-bottom: 20px;
+  border: 1px solid black;
+}

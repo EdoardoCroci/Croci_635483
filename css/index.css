@@ -1,0 +1,16 @@
+@import 'forms.css';
+@import 'game.css';
+@import 'generic.css';
+@import 'header.css';
+@import 'instructions.css';
+@import 'keyboard.css';
+@import 'latestGames.css';
+@import 'leaderboard.css';
+
+* {
+  font-family: Helvetica, sans-serif;
+}
+
+body {
+  background-color: #f1f1f1;
+}

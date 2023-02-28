@@ -1,0 +1,99 @@
+/*Utils*/
+.space {
+  height: 20px;
+}
+
+.centeredContent {
+  display: flex;
+  justify-content: center;
+}
+
+.textCentered {
+  text-align: center;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mt-1 {
+  margin-top: 5px;
+}
+
+.p-1 {
+  padding: 5px;
+}
+
+.bgError {
+  background-color: #dc3545;
+}
+
+.correctChar {
+  background-color: #6aaa64 !important;
+}
+
+.wrongChar {
+  background-color: #787c7e !important;
+}
+
+.wrongPlaceChar {
+  background-color: #c9b458 !important;
+}
+
+.needLogin {
+  visibility: hidden;
+}
+
+.hidden {
+  visibility: hidden !important;
+}
+
+.d-none {
+  display: none;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+
+#popupMessage {
+  display: none;
+  color: white;
+  width: fit-content;
+  width: -moz-fit-content;
+  height: fit-content;
+  height: -moz-fit-content;
+  margin: auto;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 8px;
+  font-size: 16px;
+  padding-inline: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-bottom: 10px;
+}
+
+/*Icons*/
+.iconSmall {
+  width: 15px;
+}
+
+.iconMedium {
+  width: 25px;
+}
+
+.iconLarge {
+  width: 35px;
+}

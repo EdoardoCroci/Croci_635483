@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--css-->
+    <link rel="stylesheet" href="css/index.css" />
+    <!--script-->
+    <script src="js/functions.js"></script>
+    <script src="js/formsManagement.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/logic.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/auth.js"></script>
+    <title>Indovina la parola</title>
+  </head>
+  <body>
+    <div id="header" class="centeredContent">
+      <img src="./images/security.png" id="adminImg" onclick="goToAdminPage()" alt="admin" />
+      <button id="logoutBtn" class="needLogin" onclick="logout(false)">
+        <span class="tooltip">
+          <img src="./images/right-from-bracket-solid.svg" class="iconLarge" alt="logout" />
+          <span class="tooltipText">Logout</span>
+        </span>
+      </button>
+      <h1 class="textCentered">
+        <button class="titleBtn correctChar">I</button>
+        <button class="titleBtn correctChar">N</button>
+        <button class="titleBtn correctChar">D</button>
+        <button class="titleBtn correctChar">O</button>
+        <button class="titleBtn correctChar">V</button>
+        <button class="titleBtn correctChar">I</button>
+        <button class="titleBtn correctChar">N</button>
+        <button class="titleBtn correctChar">A</button>
+        <button class="titleBtn wrongChar">L</button>
+        <button class="titleBtn wrongChar">A</button>
+        <button class="titleBtn wrongPlaceChar">P</button>
+        <button class="titleBtn wrongPlaceChar">A</button>
+        <button class="titleBtn wrongPlaceChar">R</button>
+        <button class="titleBtn wrongPlaceChar">O</button>
+        <button class="titleBtn wrongPlaceChar">L</button>
+        <button class="titleBtn wrongPlaceChar">A</button>
+      </h1>
+      <!--Menu-->
+      <div id="actions">
+        <button class="actionsButtons" onclick="showHowToPlay()">
+          <span class="tooltip">
+            <img src="images/circle-question-regular.svg" class="iconLarge" alt="come giocare" />
+            <span class="tooltipText">Mostra regole</span>
+          </span>
+        </button>
+        <button class="actionsButtons needLogin" onclick="showLeaderboard()">
+          <span class="tooltip">
+            <img src="images/ranking-star-solid.svg" class="iconLarge" alt="classifica" />
+            <span class="tooltipText">Mostra classifica</span>
+          </span>
+        </button>
+        <button class="actionsButtons needLogin" onclick="showLatestGames()">
+          <span class="tooltip">
+            <img src="images/clock-rotate-left-solid.svg" class="iconLarge" alt="partite precedenti" />
+            <span class="tooltipText">Mostra partite precedenti</span>
+          </span>
+        </button>
+      </div>
+    </div>
+    <hr class="mb-20" />
+    <!--Messaggio popup-->
+    <div id="popupMessage"></div>
+    <!--How to play-->
+    <div id="instructions">
+      <h2 class="textCentered">Manuale di gioco</h2>
+      <img src="images/circle-xmark-regular.svg" onclick="showHowToPlay()" class="iconMedium closeBtn" alt="chiudi" />
+      <hr />
+      <h3 class="textCentered">Regole e Scopo</h3>
+      <p>
+        Lo scopo del gioco è indovinare una parola formata da un numero di lettere a scelta in sei tentativi.
+        <br />
+        Se la parola non viene indovinata si perde.
+        <br />
+        Ecco alcune regole:
+      </p>
+      <ul>
+        <li>
+          Per inserire una nuova lettera è possibile cliccare il relativo bottone posto sotto la griglia di gioco oppure digitare
+          attraverso la tastiera fisica
+        </li>
+        <li>
+          Per rimuovere l'ultima lettera inserita è possibile cliccare il tasto in basso a destra nella tastiera oppure
+          "Backspace" dalla tastiera fisica
+        </li>
+        <li>
+          Quando si vuole confrontare il tentativo con la parola da indovinare bisogna cliccare il tasto "INVIO" oppure "Enter"
+          dalla tastiera fisica
+        </li>
+        <li>La parola da indovinare può essere composta da 5, 6, 7 oppure 8 lettere</li>
+        <li>Per fare un tentativo bisogna inserire tutte le lettere</li>
+        <li>
+          Il tentativo viene registrato solo se la parola viene indovinata o se all'ultimo tentativo la parola non è stata
+          indovinata
+        </li>
+        <li>Non si possono inserire parole a caso, la parola inserita verrà convalidata ed eventualmente respinta</li>
+        <li>La parola da indovinare potrebbe essere un nome</li>
+        <li>
+          <b>Nota bene: </b>la validazione della parola avviene secondo l'ordine di inserimento, se la lettera "A" viene inserita
+          sia come seconda che come quinta lettera e nella soluzione è presente solo nel quinto posto verrà mostrata gialla la
+          seconda casella e grigia la quinta
+        </li>
+        <li>
+          <b>Nota bene: </b>se non si conosce l'effetto di un bottone è possibile scoprire la sua funzione passandoci sopra il
+          mouse
+        </li>
+      </ul>
+      <hr />
+      <h3 class="textCentered">Possibili scenari</h3>
+      <div id="possibleCases">
+        <p>Una volta inviato il tentativo questi sono i possibili scenari: (considerando una parola formata da 5 lettere)</p>
+        <p class="textCentered">
+          <button class="instructionsBtn wrongChar">F</button>
+          <button class="instructionsBtn wrongPlaceChar">U</button>
+          <button class="instructionsBtn wrongPlaceChar">R</button>
+          <button class="instructionsBtn wrongChar">B</button>
+          <button class="instructionsBtn correctChar">O</button>
+        </p>
+        <p>
+          La lettera "O", si trova nella parola ed è nel posto giusto, le lettere "U", "R" sono presenti nella parola ma non sono
+          nel posto giusto e le lettere "F", "B" non sono presenti nella parola.
+        </p>
+        <p class="textCentered">
+          <button class="instructionsBtn wrongPlaceChar">P</button>
+          <button class="instructionsBtn wrongPlaceChar">R</button>
+          <button class="instructionsBtn correctChar">U</button>
+          <button class="instructionsBtn wrongChar">N</button>
+          <button class="instructionsBtn correctChar">O</button>
+        </p>
+        <p>
+          Le lettere "O", "U" si trovano nella parola e sono nel posto giusto, le lettere "P", "R" si trovano nella parola ma sono
+          nel posto sbagliato e la lettera "N" non è presente nella parola.
+        </p>
+        <p class="textCentered">
+          <button class="instructionsBtn correctChar">E</button>
+          <button class="instructionsBtn correctChar">P</button>
+          <button class="instructionsBtn correctChar">U</button>
+          <button class="instructionsBtn correctChar">R</button>
+          <button class="instructionsBtn correctChar">O</button>
+        </p>
+        <p>Tutte le lettere sono nel posto corretto.</p>
+      </div>
+      <hr />
+      <h3 class="textCentered">Sistema di assegnazione punti</h3>
+      <div id="leadExplanation">
+        <p>
+          I punti vengono assegnati in base al tentativo in cui viene indovinata la parola e al numero di caratteri dai quali è
+          formata, la tabella di conversione è:
+        </p>
+        <table id="pointSystem">
+          <thead>
+            <tr>
+              <th>N. tentativo</th>
+              <th>Punteggio ottenuto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>6 x num. caratteri</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>5 x num. caratteri</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>4 x num. caratteri</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>3 x num. caratteri</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>2 x num. caratteri</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>1 x num. caratteri</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--Form di login-->
+    <div id="loginFormDiv">
+      <h3 class="textCentered">Login</h3>
+      <hr />
+      <form id="loginForm">
+        <label for="nameInputL"> Username </label>
+        <br />
+        <input type="text" name="nameInput" id="nameInputL" class="formInput" />
+        <br />
+        <label for="passInputL" class="mt-2"> Password </label>
+        <br />
+        <input type="password" name="passInput" id="passInputL" class="formInput" />
+        <br />
+        <label for="rememberMe"> Ricordami </label><input type="checkbox" name="rememberMe" id="rememberMe" checked />
+        <p id="loginError" class="invalid textCentered">Compilare tutti i campi per proseguire.</p>
+        <div class="centeredContent">
+          <input type="button" value="Login" class="submitBtn correctChar" onclick="submitLogin()" />
+        </div>
+        <hr />
+        <div class="centeredContent">
+          <input type="button" onclick="showRegisterForm()" id="registerLink" value="Registrati" />
+        </div>
+      </form>
+    </div>
+    <!--Form di registrazione-->
+    <div id="registerFormDiv">
+      <h3 class="textCentered">Registrazione</h3>
+      <hr />
+      <form id="registerForm">
+        <label for="nameInputR"> Username </label>
+        <br />
+        <input type="text" name="nameInput" id="nameInputR" class="formInput" onkeyup="usernameKeyUp()" />
+        <br />
+        <label for="passInputR" class="mt-2"> Password </label>
+        <br />
+        <input type="password" name="passInput" id="passInputR" class="formInput" onkeyup="passKeyUp()" />
+        <br />
+        <label for="passConfInput"> Conferma password </label>
+        <br />
+        <input type="password" name="passConfInput" id="passConfInput" class="formInput" onkeyup="confKeyUp()" />
+        <br />
+        <p>Il nome utente deve essere tra 4 e 20 caratteri e può contenere solo lettere o numeri.</p>
+        <p>La password deve rispettare i seguenti requisiti:</p>
+        <ul>
+          <li id="numberCondition">Almeno un numero</li>
+          <li id="lowerCondition">Almeno un carattere minuscolo</li>
+          <li id="upperCondition">Almeno un carattere maiuscolo</li>
+          <li id="lengthCondition">Lunghezza compresa tra 8 e 12 caratteri</li>
+          <li id="matchCondition">Le due password devono essere identiche</li>
+        </ul>
+        <p id="registerError" class="textCentered invalid"></p>
+        <div class="centeredContent">
+          <input
+            id="registerBtn"
+            type="button"
+            value="Registrati"
+            class="submitBtn wrongChar"
+            onclick="submitRegister()"
+            disabled
+          />
+        </div>
+        <hr />
+        <div class="centeredContent">
+          <input type="button" id="loginLink" value="Login" onclick="showLoginForm()" />
+        </div>
+      </form>
+    </div>
+    <!--Form per nuova partita-->
+    <div id="newGameDiv" class="needLogin">
+      <label for="nCharactersInput">N. caratteri: </label>
+      <input type="number" min="5" max="8" value="5" id="nCharactersInput" />
+      <button class="correctChar" id="newGameBtn" onclick="startNewGame()">Nuova partita</button>
+    </div>
+    <!--Porzione generata dinamicamente-->
+    <div id="generatedHTML" class="needLogin">
+      <div id="gridContainer"></div>
+      <div id="keyboardContainer">
+        <div class="mb-10">
+          <button class="keyboardBtn" id="letterQ">Q</button>
+          <button class="keyboardBtn" id="letterW">W</button>
+          <button class="keyboardBtn" id="letterE">E</button>
+          <button class="keyboardBtn" id="letterR">R</button>
+          <button class="keyboardBtn" id="letterT">T</button>
+          <button class="keyboardBtn" id="letterY">Y</button>
+          <button class="keyboardBtn" id="letterU">U</button>
+          <button class="keyboardBtn" id="letterI">I</button>
+          <button class="keyboardBtn" id="letterO">O</button>
+          <button class="keyboardBtn" id="letterP">P</button>
+        </div>
+        <div class="mb-10">
+          <button class="keyboardBtn" id="letterA">A</button>
+          <button class="keyboardBtn" id="letterS">S</button>
+          <button class="keyboardBtn" id="letterD">D</button>
+          <button class="keyboardBtn" id="letterF">F</button>
+          <button class="keyboardBtn" id="letterG">G</button>
+          <button class="keyboardBtn" id="letterH">H</button>
+          <button class="keyboardBtn" id="letterJ">J</button>
+          <button class="keyboardBtn" id="letterK">K</button>
+          <button class="keyboardBtn" id="letterL">L</button>
+        </div>
+        <div>
+          <button id="tryBtn">INVIO</button>
+          <button class="keyboardBtn" id="letterZ">Z</button>
+          <button class="keyboardBtn" id="letterX">X</button>
+          <button class="keyboardBtn" id="letterC">C</button>
+          <button class="keyboardBtn" id="letterV">V</button>
+          <button class="keyboardBtn" id="letterB">B</button>
+          <button class="keyboardBtn" id="letterN">N</button>
+          <button class="keyboardBtn" id="letterM">M</button>
+          <button id="deleteBtn">
+            <img src="images/delete-left-solid.svg" class="iconLarge" alt="Backspace" />
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--Div per mostrare le ultime partite-->
+    <div id="latestGamesDiv" class="needLogin d-none"></div>
+    <!--Div per mostrare la classifica-->
+    <div id="leaderboardDiv" class="needLogin d-none"></div>
+  </body>
+</html>

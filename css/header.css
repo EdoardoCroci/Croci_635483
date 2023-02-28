@@ -1,0 +1,40 @@
+/*Classes*/
+.actionsButtons {
+  border: none;
+  background-color: transparent;
+  font-size: 28px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.titleBtn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  margin: 0 2px;
+  color: white;
+  font-size: 18px;
+}
+
+/*ids*/
+#actions {
+  right: 30px;
+  position: absolute;
+}
+
+#logoutBtn {
+  border: none;
+  position: absolute;
+  top: 32px;
+  left: 80px;
+  cursor: pointer;
+}
+
+#adminImg {
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  cursor: pointer;
+}
